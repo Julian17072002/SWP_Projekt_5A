@@ -12,10 +12,7 @@ public class DartsMain {
 		dt.output();
 		
 		Single_Training st = new Single_Training();
-		st.output();
-		
-		Scoreing s = new Scoreing();
-		s.output();
+		st.output();                   
 		
 		Around_the_Clock atc = new Around_the_Clock();
 		atc.output();
