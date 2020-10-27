@@ -22,7 +22,7 @@ public class Test {
 		System.out.println("Game on");
 		System.out.println("");
 			
-		loop: do {
+		loop: do {												//benennung der Schleife, damit keine endlosschleife entsteht
 				System.out.println(game.getScore());
 				System.out.println("Current Player: "+ game.getCurrentPlayerName());
 				
@@ -36,7 +36,15 @@ public class Test {
 				
 				int score = Board.parseInput(input);
 				score = game.subtractPointsForCurrentPlayer(score);
-				System.out.println("\t -> "+score);
+				System.out.println("\t -> "+Math.abs(score));
+				
+				if (score == 0) {
+					System.out.println("Game shot an the Match");
+					break loop;
+				} else if (score < 0) {
+					System.out.println("No Score");
+					break;
+				}
 			}
 			System.out.println();
 			
@@ -45,6 +53,7 @@ public class Test {
 		} while(true);
 		
 		sc.close();
+		System.out.println();
 		System.out.println("Finish");
 	}
 	

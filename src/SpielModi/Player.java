@@ -26,5 +26,10 @@ public class Player {
 		return currentPoints;
 		
 	}
+
+	public void resetPoints(int prevPoints) {
+		currentPoints = prevPoints;
+		
+	}
 	
 }
