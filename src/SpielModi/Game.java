@@ -17,11 +17,12 @@ public class Game {
 	}
 	
 	public String getScore() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("Round: "+(counter / 2 + 1) + "\n");
 		
 		for (Player p : players) {
 			sb.append(p.getName() + ": ");
 			sb.append(p.getCurrentPoints() + " points");
+			sb.append("," + p.getNumberOfDarts() + " thrown Darts");
 			sb.append("\n");
 		}
 		
@@ -29,12 +30,16 @@ public class Game {
 	}
 
 	public int subtractPointsForCurrentPlayer(int score) {
-		int points = players[counter % players.length].subtractPoints(score);
+		Player player = players[counter % players.length];
+		
+		player.addDart();
+		int points = player.subtractPoints(score);
+		
 		if(points < 0) {
-			players[counter % players.length].resetPoints(prevPoints);
-			points = players[counter % players.length].getCurrentPoints() * (-1);
+			player.resetPoints(prevPoints);
+			points = player.getCurrentPoints() * (-1);
 		}	
-		return players[counter % players.length].getCurrentPoints();
+		return points;
 	}
 	
 	public void nextPlayer() {

@@ -4,10 +4,12 @@ public class Player {
 	
 	private final String NAME;
 	private int currentPoints;
+	private int nummberOfDarts;
 	
 	public Player(String name, int points) {
 		NAME = name;
 		currentPoints = points;
+		nummberOfDarts = 0;
 		
 	}
 
@@ -30,6 +32,14 @@ public class Player {
 	public void resetPoints(int prevPoints) {
 		currentPoints = prevPoints;
 		
+	}
+	
+	public void addDart() {
+		nummberOfDarts++;
+	}
+	
+	public int getNumberOfDarts() {
+		return nummberOfDarts;
 	}
 	
 }
