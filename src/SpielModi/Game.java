@@ -4,14 +4,21 @@ public class Game {
 	
 	private Player[] players;
 	private int counter = 0;
-	private int prevPoints;
+	private int pointsBeforeThisRound;
+	private int startingPoints;
+	private boolean doubleIn, doubleOut;
 	
-	public Game(int points, int numberOfPlayers) {
-		players = new Player[numberOfPlayers];
-		prevPoints = points;
+	public Game(GameParameter par) {
+		counter = 0;
 		
-		for (int i = 0; i < numberOfPlayers; i++) {
-			players[i] = new Player("Player "+ (i + 1), points);
+		startingPoints = pointsBeforeThisRound = par.getPoints();
+		doubleIn = par.isDoubleIn();
+		doubleOut = par.isDoubleOut();
+		
+		players = new Player[par.getNames().length];
+		
+		for (int i = 0; i < players.length; i++) {
+			players[i] = new Player(par.getNames() [i], pointsBeforeThisRound);
 		}
 			
 	}
@@ -33,6 +40,7 @@ public class Game {
 		Player player = players[counter % players.length];
 		
 		player.addDart();
+		
 		int points = player.subtractPoints(score);
 		
 		if(points < 0) {

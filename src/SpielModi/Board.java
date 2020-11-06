@@ -2,9 +2,11 @@ package SpielModi;
 
 public class Board {
 	
-	public static int parseInput(String input) {
+	public static int input(String input) {
 		int points = 0;
 		int factor = 1;
+		
+		input = input.toLowerCase().trim();
 		
 		if (input.startsWith("d")) {
 			factor = 2;
@@ -19,6 +21,7 @@ public class Board {
 			case "be": points = 25; factor = 2; break;
 			case "ms": break;
 			case "bo": break;
+			case "-": break;
 		default: points = Integer.parseInt(input);
 		}
 		

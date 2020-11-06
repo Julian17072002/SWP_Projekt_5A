@@ -5,10 +5,13 @@ import Test.Test;
 public class DartsMain {
 
 	public static void main(String[] args) {
-		Game game = new Game(501, 2);
+		GameParameter par = new Parameter().enterGameParameter();
+		Game game = new Game(par);
 		Test t = new Test(game);
 
 		t.playGame();
+		
+		Parameter.sc.close();
 		
 //		Cricket c = new Cricket();
 //		c.output();

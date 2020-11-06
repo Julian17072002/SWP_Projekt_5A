@@ -14,8 +14,6 @@ public class Test {
 		super();
 		this.game = game;
 		 sc = new Scanner(System.in);
-		
-		System.out.println("Hello Players");
 	}
 	
 	public void playGame() {
@@ -26,33 +24,40 @@ public class Test {
 				System.out.println(game.getScore());
 				System.out.println("Current Player: "+ game.getCurrentPlayerName());
 				
+				int sum = 0;
 				for (int i = 1; i <=3; i++) {
-				System.out.println("> ");
+				System.out.println(i + " > ");
 				
-				String input = sc.nextLine().toLowerCase().trim();
+				String input = sc.nextLine();
 				
 				if(input.equals("exit"))
 					break loop;
 				
-				int score = Board.parseInput(input);
-				score = game.subtractPointsForCurrentPlayer(score);
-				System.out.println("\t -> "+Math.abs(score));
+				int score = Board.input(input);
+				sum += score;
 				
-				if (score == 0) {
+				int remscore = game.subtractPointsForCurrentPlayer(score);
+				System.out.println("\t -> "+Math.abs(remscore));
+				
+				if (remscore == 0) {
 					System.out.println("Game shot an the Match");
 					break loop;
-				} else if (score < 0) {
+				} else if (remscore < 0) {
 					System.out.println("No Score");
+					sum = 0;
 					break;
 				}
-			}
+			}	
+				
+			System.out.println("Summe: " + sum);
+			
 			System.out.println();
 			
 			game.nextPlayer();
 			
 		} while(true);
 		
-		sc.close();
+//		sc.close();
 		System.out.println();
 		System.out.println("Finish");
 	}

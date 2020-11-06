@@ -4,12 +4,12 @@ public class Player {
 	
 	private final String NAME;
 	private int currentPoints;
-	private int nummberOfDarts;
+	private int numberOfDarts;
 	
 	public Player(String name, int points) {
 		NAME = name;
 		currentPoints = points;
-		nummberOfDarts = 0;
+		numberOfDarts = 0;
 		
 	}
 
@@ -34,12 +34,12 @@ public class Player {
 		
 	}
 	
-	public void addDart() {
-		nummberOfDarts++;
+	void addDart() {
+		numberOfDarts++;
 	}
 	
 	public int getNumberOfDarts() {
-		return nummberOfDarts;
+		return numberOfDarts;
 	}
 	
 }
