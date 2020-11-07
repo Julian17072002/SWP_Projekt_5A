@@ -2,7 +2,7 @@ package SpielModi;
 
 public class Board {
 	
-	public static int input(String input) {
+	public static Result input(String input) {
 		int points = 0;
 		int factor = 1;
 		
@@ -22,10 +22,15 @@ public class Board {
 			case "ms": break;
 			case "bo": break;
 			case "-": break;
-		default: points = Integer.parseInt(input);
+			default: points = Integer.parseInt(input);
+			
+			if (points > 20 && points % 2 == 0) {
+				points /= 2;
+				factor = 2;
+			}
 		}
 		
-		return points * factor;
+		return new Result(input, points, factor);
 	}
 	
 }

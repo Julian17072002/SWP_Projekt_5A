@@ -1,5 +1,6 @@
 package SpielModi;
 
+
 public class Game {
 	
 	private Player[] players;
@@ -35,27 +36,42 @@ public class Game {
 		
 		return sb.toString();
 	}
-
-	public int subtractPointsForCurrentPlayer(int score) {
-		Player player = players[counter % players.length];
-		
-		player.addDart();
-		
-		int points = player.subtractPoints(score);
-		
-		if(points < 0) {
-			player.resetPoints(prevPoints);
-			points = player.getCurrentPoints() * (-1);
-		}	
-		return points;
-	}
 	
+		public CalcResult calcPointsForCurrentPlayer(Result parsed) {
+			Player player = players[counter % players.length];
+			
+			player.addDart();
+			
+			int score = parsed.getActualScore();
+			
+			int oldPoints = player.getCurrentPoints();
+			CalcResult result;
+			
+			if (doubleIn && oldPoints == startingPoints && parsed.getFactor() != 2)
+				result = new CalcResult(0, startingPoints, "double in");
+			else if (oldPoints - score < 0
+					|| doubleOut && oldPoints - score == 1
+					|| doubleOut && oldPoints - score == 0 && parsed.getFactor() != 2) {
+				result = new CalcResult(0, pointsBeforeThisRound, "busted");
+				player.resetPointsToPrevPoints(pointsBeforeThisRound);
+			} else {
+				int remaining = player.subtractPoints(score);
+				result = new CalcResult(score, remaining, "");
+			}
+			
+			return result;
+		
+	}
 	public void nextPlayer() {
 		counter++;
-		prevPoints = players[counter % players.length].getCurrentPoints();
+
+		pointsBeforeThisRound = players[counter % players.length].getCurrentPoints();
 	}
 	
 	public String getCurrentPlayerName() {
 		return players[counter % players.length].getName();
 	}
+
+
+
 }

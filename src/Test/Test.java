@@ -3,6 +3,7 @@ package Test;
 import java.util.Scanner;
 
 import SpielModi.Board;
+import SpielModi.CalcResult;
 import SpielModi.Game;
 
 public class Test {
@@ -26,29 +27,33 @@ public class Test {
 				
 				int sum = 0;
 				for (int i = 1; i <=3; i++) {
-				System.out.println(i + " > ");
+					System.out.println(i + " > ");
 				
-				String input = sc.nextLine();
+					String input = sc.nextLine();
+					
+					if(input.equals("exit"))
+						break loop;
 				
-				if(input.equals("exit"))
-					break loop;
-				
-				int score = Board.input(input);
-				sum += score;
-				
-				int remscore = game.subtractPointsForCurrentPlayer(score);
-				System.out.println("\t -> "+Math.abs(remscore));
-				
-				if (remscore == 0) {
-					System.out.println("Game shot an the Match");
-					break loop;
-				} else if (remscore < 0) {
-					System.out.println("No Score");
-					sum = 0;
-					break;
+					CalcResult calcRes = game.calcPointsForCurrentPlayer(Board.input(input));
+
+					if (calcRes.isValid()) {
+						sum += calcRes.getScore();
+						System.out.println("\t -> "+ calcRes.getRemaining());
+			
+						if (calcRes.getRemaining() == 0) {
+							System.out.println("Game shot and the Match");
+							break loop;
+					}
+				}	else {
+					System.out.println(calcRes.getReason()
+							+ " -> " + calcRes.getRemaining() + " remaining");
+					
+					if (calcRes.getReason().equals("bust")) {
+						sum = 0;
+						break;
+					}
 				}
 			}	
-				
 			System.out.println("Summe: " + sum);
 			
 			System.out.println();

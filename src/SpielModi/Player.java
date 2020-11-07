@@ -41,5 +41,10 @@ public class Player {
 	public int getNumberOfDarts() {
 		return numberOfDarts;
 	}
+
+	public void resetPointsToPrevPoints(int pointsBeforeThisRound) {
+		currentPoints = pointsBeforeThisRound;
+		
+	}
 	
 }
