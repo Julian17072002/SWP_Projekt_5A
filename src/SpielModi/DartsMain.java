@@ -4,14 +4,26 @@ import Test.Test;
 
 public class DartsMain {
 
-	public static void main(String[] args) {
-		GameParameter par = new Parameter().enterGameParameter();
-		Game game = new Game(par);
-		Test t = new Test(game);
-
-		t.playGame();
+	public static void main(String[] args) {		
+		Game game;
+		Test t;
+		
+		do {
+			GameParameter par = new Parameter().enterGameParameter();
+			game = new Game(par);
+			t = new Test(game);
+			
+			do {
+				t.playLeg();
+				game.newLeg();
+			} while (!game.isWon());
+			
+		} while (t.playAgain(game.isWon()));
+		
+		System.out.println("Goodbye");
 		
 		Parameter.sc.close();
+		
 		
 //		Cricket c = new Cricket();
 //		c.output();

@@ -30,7 +30,24 @@ public class Parameter {
 		System.out.println("Double Out (y/n): ");
 		boolean doubleOut = sc.nextLine().toLowerCase().equals("y");
 		
-		return new GameParameter(points, names, doubleIn, doubleOut);
+		System.out.println();
+		int legsToPlay = readNumber("Enter Number of Legs you want to play (best of modus): ", "1");
+		System.out.println();
+		
+		return new GameParameter(points, names, doubleIn, doubleOut, legsToPlay);
+	}
+	
+	private int readNumber(String eingabe, String defaultValue) {
+		System.out.print(eingabe + " (default = " + defaultValue + "): ");
+		System.out.println();
+		
+		String input = sc.nextLine();
+		if (input.isEmpty()) {
+			input = defaultValue;
+			System.out.println("-> " + input);
+		}
+		
+		return Integer.parseInt(input);
 	}
 
 }

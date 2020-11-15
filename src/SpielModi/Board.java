@@ -22,15 +22,31 @@ public class Board {
 			case "ms": break;
 			case "bo": break;
 			case "-": break;
-			default: points = Integer.parseInt(input);
-			
-			if (points > 20 && points % 2 == 0) {
-				points /= 2;
-				factor = 2;
-			}
+			default: 
+				if (input.length() == 0 || input.length() > 2 || !isNumber(input)) {
+					return new Result(input, 0,0, false); 
+				}
+				points = Integer.parseInt(input);
+				if (factor == 1) {
+					if (points > 20 && points <= 40 && points % 2 == 0 || points == 50) {
+						points /= 2;
+						factor = 2;
+					} else if (points > 20 && points <= 60 && points % 3 == 0) {
+						points /= 3;
+						factor = 3;
+					} else if (points > 20 && points != 25) 
+						return new Result(input, 0, 0, false);
+				}
 		}
 		
-		return new Result(input, points, factor);
+		return new Result(input, points, factor, true);
 	}
 	
+	private static boolean isNumber(String input) {
+		for(int i = 0; i < input.length(); i++) {
+			if (!(input.charAt(i) >= '0' && input.charAt(i) <= '9'))
+				return false;
+		}
+		return true;
+	}
 }

@@ -4,12 +4,15 @@ public class Player {
 	
 	private final String NAME;
 	private int currentPoints;
+	private int startingPoints;
 	private int numberOfDarts;
+	private int numberOfLegsWon;
 	
 	public Player(String name, int points) {
 		NAME = name;
-		currentPoints = points;
+		startingPoints = currentPoints = points;
 		numberOfDarts = 0;
+		numberOfLegsWon = 0;
 		
 	}
 
@@ -24,13 +27,9 @@ public class Player {
 	}
 
 	public int subtractPoints(int score) {
+		numberOfDarts++;
 		currentPoints -= score;
 		return currentPoints;
-		
-	}
-
-	public void resetPoints(int prevPoints) {
-		currentPoints = prevPoints;
 		
 	}
 	
@@ -43,8 +42,25 @@ public class Player {
 	}
 
 	public void resetPointsToPrevPoints(int pointsBeforeThisRound) {
-		currentPoints = pointsBeforeThisRound;
-		
+		currentPoints = pointsBeforeThisRound;	
+	}
+	
+	public void resetPoints() {
+		currentPoints = startingPoints;
+		numberOfDarts = 0;
+	}
+	
+	public double threeDartAvg() {
+		double avg = 1.0 * (startingPoints - currentPoints) / numberOfDarts * 3;
+		return avg;
+	}
+	
+	void increaseWonLeg() {
+		numberOfLegsWon++;
+	}
+	
+	public int getLegsWon() {
+		return numberOfLegsWon;
 	}
 	
 }
