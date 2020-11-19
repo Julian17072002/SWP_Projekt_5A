@@ -19,10 +19,10 @@
   </p>
 </p>
 
-## About the project
+<h1>About the project</h1>
 Enter a description about the project, its history and its goals here.
 
-## Installation
+<h1>Installation</h1>
 
 Enter a step by step explanation for installing this repository on a local machine.
 
