@@ -20,7 +20,7 @@
 </p>
 
 <h1>About the project</h1>
-Enter a description about the project, its history and its goals here.
+<p>The Darts Scoreing App offers the possibility to play darts in real life through different game modes in order to improve your darts skills. In game modes 501/301 you can play against a bot that simulates a virtual opponent. However, you can also play in multiplayer mode with your friends</p>
 
 <h1>Installation</h1>
 
