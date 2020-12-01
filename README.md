@@ -28,6 +28,8 @@ In order to be able to call up the program, you must have a Java development env
 
 You can either call up the program in the Eclipse console or in the command line
 
+A MySQL development environment is also required so that the entered values can be saved in a database so that graphics etc. can also be created from the saved values.
+
 ## Contact
 
 If you have any questions about this project, please feel free to contact us.
