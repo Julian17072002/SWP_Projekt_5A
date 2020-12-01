@@ -2,9 +2,12 @@ package SpielModi;
 
 public class Board {
 	
+	private static int points;
+	private static int factor;
+	
 	public static Result input(String input) {
-		int points = 0;
-		int factor = 1;
+		points = 0;
+		factor = 1;
 		
 		input = input.toLowerCase().trim();
 		
@@ -41,6 +44,21 @@ public class Board {
 		
 		return new Result(input, points, factor, true);
 	}
+	
+	public double doublequote() {
+		int anzDoppel = 0;
+		int doppelHit = 0;
+		if (points <= 40 && points % 2 == 0 || points == 50) {
+			if(factor != 2) {
+				anzDoppel++;
+			}
+		}
+		if (points == 0) {
+			doppelHit++;
+		}
+			return (anzDoppel/doppelHit) * 100;
+	}
+	
 	
 	private static boolean isNumber(String input) {
 		for(int i = 0; i < input.length(); i++) {

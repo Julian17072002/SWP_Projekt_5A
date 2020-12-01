@@ -1,5 +1,7 @@
 package SpielModi;
 
+//import SpielModi.Board;
+
 public class Player {
 	
 	private final String NAME;
@@ -38,7 +40,7 @@ public class Player {
 	}
 	
 	public int getNumberOfDarts() {
-		return numberOfDarts;
+		return numberOfDarts / 2;
 	}
 
 	public void resetPointsToPrevPoints(int pointsBeforeThisRound) {
@@ -51,9 +53,19 @@ public class Player {
 	}
 	
 	public double threeDartAvg() {
-		double avg = 1.0 * (startingPoints - currentPoints) / numberOfDarts * 3;
+		double avg = 1.0 * (startingPoints - currentPoints) / (numberOfDarts / 2) * 3;
 		return avg;
 	}
+	
+//	public double doublequote() {
+//		int anzDoppel;
+//		if ((startingPoints - currentPoints) <= 40 || (startingPoints - currentPoints) == 50) {
+//			if(Board.factor != 2) {
+//				anzDoppel++;
+//			}
+//		}
+//			return 0;
+//	}
 	
 	void increaseWonLeg() {
 		numberOfLegsWon++;

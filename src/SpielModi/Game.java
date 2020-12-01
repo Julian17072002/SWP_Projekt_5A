@@ -1,6 +1,5 @@
 package SpielModi;
 
-
 public class Game {
 	
 	private Player[] players;

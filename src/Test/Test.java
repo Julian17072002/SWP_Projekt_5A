@@ -7,13 +7,18 @@ import SpielModi.CalcResult;
 import SpielModi.Game;
 import SpielModi.Player;
 import SpielModi.Result;
+import java.sql.Connection;
+
+import dbmodle.DBManager;
+import dbmodle.Score;
 import SpielModi.PlayerCounter;
 
 public class Test {
 
 	private Game game;
 	private Scanner sc;
-
+	private static double sum;
+	
 	public Test(Game game) {
 		super();
 		this.game = game;
@@ -26,7 +31,7 @@ public class Test {
 		System.out.println("");
 	}
 	
-	public void playLeg() {
+	public void playLeg() throws Exception {
 		
 			loop: do {
 					System.out.println();
@@ -78,13 +83,28 @@ public class Test {
 			}	
 			System.out.println("Summe: " + sum);
 			
+			DBManager db = new DBManager();
+			Connection con = DBManager.getConnection();
+			System.out.println("connect");
+			Score s = new Score(sum);
+			
+			db.speichereNeuenEintrag(con, s);
+			
 			System.out.println();
 			
 			game.nextPlayer();
 			
 		} while(true);
 	}
+	
+	public static double getSum() {
+		return sum;
+	}
 
+	public static void main(String[] args){
+
+	}
+	
 	private void printHelp() {
 		System.out.println();
 		System.out.println("Enter the score you scored for every dart");
@@ -93,14 +113,14 @@ public class Test {
 	}
 	
 	private String generateScoreboard(PlayerCounter score) {
-		StringBuilder sb = new StringBuilder("Round: "+(score.getPlayerCounter() / score.getPlayers().length + "\n"));
+		StringBuilder sb = new StringBuilder("Round: "+((score.getPlayerCounter() / score.getPlayers().length + 1) + "\n"));
 				
 		for (Player p : score.getPlayers()) {
 			sb.append(p.getName() + ": ");
 			sb.append(p.getCurrentPoints() + " points");
-			sb.append("," + p.getNumberOfDarts() + " thrown Darts");
-			sb.append(" Legs " + p.getLegsWon());
-			sb.append(" Average: " + p.threeDartAvg());
+			sb.append("| " + p.getNumberOfDarts() + " thrown Darts");
+			sb.append("| Legs Won" + p.getLegsWon());
+			sb.append("| Average: " + p.threeDartAvg());
 			sb.append("\n");
 		}
 		

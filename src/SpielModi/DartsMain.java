@@ -4,7 +4,7 @@ import Test.Test;
 
 public class DartsMain {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws Exception {		
 		Game game;
 		Test t;
 		
@@ -19,6 +19,7 @@ public class DartsMain {
 			} while (!game.isWon());
 			
 		} while (t.playAgain(game.isWon()));
+		
 		
 		System.out.println("Goodbye");
 		
