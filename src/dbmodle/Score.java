@@ -9,7 +9,7 @@ public class Score {
 	public Score(double s) {
 		this.s = s;
 	}
-	
+
 	public double getS() {
 		return s;
 	}

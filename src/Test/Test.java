@@ -66,7 +66,18 @@ public class Test {
 						sum += calcRes.getScore();
 						System.out.println("\t -> "+ calcRes.getRemaining());
 		
+					
+						
 					if (calcRes.getRemaining() == 0) {
+						System.out.println("Summe: " + sum);
+						
+						DBManager db = new DBManager();
+						Connection con = DBManager.getConnection();
+						System.out.println("connect");
+						Score s = new Score(sum);
+						
+						db.speichereNeuenEintrag(con, s);
+						
 						System.out.println("Game shot and the Leg");
 						System.out.println();
 						break loop;
