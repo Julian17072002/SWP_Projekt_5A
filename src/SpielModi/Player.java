@@ -5,9 +5,9 @@ package SpielModi;
 public class Player {
 	
 	private final String NAME;
-	private int currentPoints;
-	private int startingPoints;
-	private int numberOfDarts;
+	private static int currentPoints;
+	private static int startingPoints;
+	private static int numberOfDarts;
 	private int numberOfLegsWon;
 	
 	public Player(String name, int points) {
@@ -52,20 +52,20 @@ public class Player {
 		numberOfDarts = 0;
 	}
 	
-	public double threeDartAvg() {
+	public static double threeDartAvg() {
 		double avg = 1.0 * (startingPoints - currentPoints) / (numberOfDarts / 2) * 3;
 		return avg;
 	}
 	
-//	public double doublequote() {
-//		int anzDoppel;
-//		if ((startingPoints - currentPoints) <= 40 || (startingPoints - currentPoints) == 50) {
-//			if(Board.factor != 2) {
-//				anzDoppel++;
-//			}
-//		}
-//			return 0;
-//	}
+	public static double doublequote() {
+		double anzDoppel = 0.0;
+		if ((startingPoints - currentPoints) < 41 && (((startingPoints - currentPoints) % 2) == 0) || (startingPoints - currentPoints) == 50) {
+				anzDoppel++;
+		}
+			
+		double d = (1/anzDoppel) * 100;
+		return d;
+	}
 	
 	void increaseWonLeg() {
 		numberOfLegsWon++;

@@ -11,6 +11,7 @@ import java.sql.Connection;
 
 import dbmodle.DBManager;
 import dbmodle.Score;
+import dbmodle.average;
 import SpielModi.PlayerCounter;
 
 public class Test {
@@ -69,14 +70,17 @@ public class Test {
 					
 						
 					if (calcRes.getRemaining() == 0) {
+						System.out.println("Wie viele Darts hatten sie aufs Doppel: ");
 						System.out.println("Summe: " + sum);
-						
+						System.out.println("Average: " + Player.threeDartAvg());
+						System.out.println("Doppelquote: " + Player.doublequote());
 						DBManager db = new DBManager();
 						Connection con = DBManager.getConnection();
 						System.out.println("connect");
 						Score s = new Score(sum);
+						average a = new average(Player.threeDartAvg());
 						
-						db.speichereNeuenEintrag(con, s);
+						db.speichereNeuenEintrag(con, s, a);
 						
 						System.out.println("Game shot and the Leg");
 						System.out.println();
@@ -98,8 +102,9 @@ public class Test {
 			Connection con = DBManager.getConnection();
 			System.out.println("connect");
 			Score s = new Score(sum);
+			average a = new average(Player.threeDartAvg());
 			
-			db.speichereNeuenEintrag(con, s);
+			db.speichereNeuenEintrag(con, s, a);
 			
 			System.out.println();
 			
@@ -110,10 +115,6 @@ public class Test {
 	
 	public static double getSum() {
 		return sum;
-	}
-
-	public static void main(String[] args){
-
 	}
 	
 	private void printHelp() {
@@ -132,6 +133,7 @@ public class Test {
 			sb.append("| " + p.getNumberOfDarts() + " thrown Darts");
 			sb.append("| Legs Won" + p.getLegsWon());
 			sb.append("| Average: " + p.threeDartAvg());
+			sb.append("| Doppelquote " + p.doublequote());
 			sb.append("\n");
 		}
 		
@@ -146,5 +148,9 @@ public class Test {
 			return sc.nextLine().toLowerCase().equals("y");
 	
 	}
+	
+//	public static void main(String[] args){
+//
+//	}
 	
 }

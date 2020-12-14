@@ -45,19 +45,13 @@ public class Board {
 		return new Result(input, points, factor, true);
 	}
 	
-	public double doublequote() {
-		int anzDoppel = 0;
-		int doppelHit = 0;
-		if (points <= 40 && points % 2 == 0 || points == 50) {
-			if(factor != 2) {
-				anzDoppel++;
-			}
-		}
-		if (points == 0) {
-			doppelHit++;
-		}
-			return (anzDoppel/doppelHit) * 100;
-	}
+//	public static double doublequote() {
+//		int anzDoppel = 0;
+//		if (points <= 40 && points % 2 == 0 || points == 50) {
+//				anzDoppel++;
+//		}
+//			return (1/anzDoppel) * 100;
+//	}
 	
 	
 	private static boolean isNumber(String input) {

@@ -1,10 +1,10 @@
 package dbmodle;
 
-//import SpielModi.Player;
+import SpielModi.Player;
 
 public class average {
 
-	double a;
+	double a = Player.threeDartAvg();
 
 	public average(double a) {
 		this.a = a;
