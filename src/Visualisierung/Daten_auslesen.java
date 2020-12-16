@@ -12,18 +12,18 @@ import java.util.Iterator;
 
 public class Daten_auslesen {
 
-	private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
-    ArrayList<String[]> result = new ArrayList<String[]>();
+	private static Connection connection;
+    private static Statement statement;
+    private static ResultSet resultSet;
+    static ArrayList<String[]> result = new ArrayList<String[]>();
 
-    private String dbTable = "fivezeroone";
-    private String user = "root";
-    private String pass = "#1606188941Js";
+    private static String dbTable = "fivezeroone";
+    private static String user = "root";
+    private static String pass = "";
     
     
 
-    public Daten_auslesen() {
+    public static void Daten_auslesen() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -38,7 +38,7 @@ public class Daten_auslesen {
 //        System.out.println("Anzahl Tupel: " + result.size());
     }
 
-    private void readDBData(int i) {
+    public static void readDBData(int i) {
 
         try {
             
@@ -67,7 +67,7 @@ public class Daten_auslesen {
         }
     }
 
-    private void printDBData(ArrayList list) {
+    public static void printDBData(ArrayList list) {
         for (Iterator iter = list.iterator(); iter.hasNext();) {
             String[] str = (String[]) iter.next();
 
@@ -81,5 +81,6 @@ public class Daten_auslesen {
     public static void main(String args[]) {
         new Daten_auslesen();
     }
+
 
 }
