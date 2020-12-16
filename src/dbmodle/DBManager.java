@@ -26,13 +26,14 @@ public class DBManager {
 		return null;
 	} 
 	
-	public void speichereNeuenEintrag(Connection con, Score s, average a) throws SQLException{
-		String sql = "insert into fivezeroone (score, avg) values (?,?)";
+	public void speichereNeuenEintrag(Connection con, Score s, average a, Doppelquote d) throws SQLException{
+		String sql = "insert into fivezeroone (score, avg, doppelquote) values (?,?,?)";
 		PreparedStatement stm = null;
 		try {
 			stm = con.prepareStatement(sql);
 			stm.setDouble(1, s.getS());
 			stm.setDouble(2, a.getA());
+			stm.setDouble(3, d.getD());
 			stm.executeUpdate();
 		}
 		finally {

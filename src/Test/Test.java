@@ -1,6 +1,7 @@
 package Test;
 
 import java.util.Scanner;
+import java.lang.Math;
 
 import SpielModi.Board;
 import SpielModi.CalcResult;
@@ -10,6 +11,7 @@ import SpielModi.Result;
 import java.sql.Connection;
 
 import dbmodle.DBManager;
+import dbmodle.Doppelquote;
 import dbmodle.Score;
 import dbmodle.average;
 import SpielModi.PlayerCounter;
@@ -19,6 +21,7 @@ public class Test {
 	private Game game;
 	private Scanner sc;
 	private static double sum;
+	private static double quote;
 	
 	public Test(Game game) {
 		super();
@@ -70,17 +73,22 @@ public class Test {
 					
 						
 					if (calcRes.getRemaining() == 0) {
+						sc = new Scanner(System.in);
 						System.out.println("Wie viele Darts hatten sie aufs Doppel: ");
+						double doppel = sc.nextInt();
+						double quote = (1/doppel) * 100;
+						double quote1 = Math.round(quote * 100)/100;
 						System.out.println("Summe: " + sum);
 						System.out.println("Average: " + Player.threeDartAvg());
-						System.out.println("Doppelquote: " + Player.doublequote());
+						System.out.println("Doppelquote: " +  quote1);
 						DBManager db = new DBManager();
 						Connection con = DBManager.getConnection();
 						System.out.println("connect");
 						Score s = new Score(sum);
 						average a = new average(Player.threeDartAvg());
+						Doppelquote d = new Doppelquote(quote1);
 						
-						db.speichereNeuenEintrag(con, s, a);
+						db.speichereNeuenEintrag(con, s, a, d);
 						
 						System.out.println("Game shot and the Leg");
 						System.out.println();
@@ -103,8 +111,9 @@ public class Test {
 			System.out.println("connect");
 			Score s = new Score(sum);
 			average a = new average(Player.threeDartAvg());
+			Doppelquote d = new Doppelquote(0.0);
 			
-			db.speichereNeuenEintrag(con, s, a);
+			db.speichereNeuenEintrag(con, s, a, d);
 			
 			System.out.println();
 			
@@ -132,8 +141,8 @@ public class Test {
 			sb.append(p.getCurrentPoints() + " points");
 			sb.append("| " + p.getNumberOfDarts() + " thrown Darts");
 			sb.append("| Legs Won" + p.getLegsWon());
-			sb.append("| Average: " + p.threeDartAvg());
-			sb.append("| Doppelquote " + p.doublequote());
+			sb.append("| Average: " + Player.threeDartAvg());
+			sb.append("| Doppelquote: " + " 0 " );
 			sb.append("\n");
 		}
 		
@@ -148,8 +157,12 @@ public class Test {
 			return sc.nextLine().toLowerCase().equals("y");
 	
 	}
+
+	public static double getQuote() {
+		return quote;
+	}
 	
-//	public static void main(String[] args){
+//	public static void main(String[] args) {
 //
 //	}
 	

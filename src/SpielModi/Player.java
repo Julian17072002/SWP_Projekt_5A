@@ -57,16 +57,6 @@ public class Player {
 		return avg;
 	}
 	
-	public static double doublequote() {
-		double anzDoppel = 0.0;
-		if ((startingPoints - currentPoints) < 41 && (((startingPoints - currentPoints) % 2) == 0) || (startingPoints - currentPoints) == 50) {
-				anzDoppel++;
-		}
-			
-		double d = (1/anzDoppel) * 100;
-		return d;
-	}
-	
 	void increaseWonLeg() {
 		numberOfLegsWon++;
 	}
