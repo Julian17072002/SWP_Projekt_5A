@@ -1,5 +1,8 @@
 package Visualisierung;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,22 +11,26 @@ import java.sql.Statement;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import dbmodle.DBManager;
+import dbmodle.fivezeroone;
 
 
 public class Daten_auslesen {
 
+	
 	private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
     static ArrayList<String[]> result = new ArrayList<String[]>();
 
-    private static String dbTable = "fivezeroone";
+//    private static String dbTable = "fivezeroone";
     private static String user = "root";
     private static String pass = "";
-    
-    
+   
 
-    public static void Daten_auslesen() {
+    public static void DatenAuslesen() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -46,7 +53,7 @@ public class Daten_auslesen {
             connection = DriverManager.getConnection(url, user, pass);
             statement = connection.createStatement();
 
-            String sqlQuery = "SELECT * FROM fivezeroone";
+            String sqlQuery = "SELECT * FROM fivezeroone;";
             resultSet = statement.executeQuery(sqlQuery);
             int spalten = resultSet.getMetaData().getColumnCount();
 //            System.out.println("Anzahl Spalten: " + spalten);
@@ -78,8 +85,23 @@ public class Daten_auslesen {
         }
     }
 
-    public static void main(String args[]) {
-        new Daten_auslesen();
+    public static void main(String args[]) throws Exception {
+//        DatenAuslesen();
+//    	fivezeroone[] avg;
+//    	fivezeroone[] score;
+//    	fivezeroone[] doppelquote;
+        DBManager db = new DBManager();
+        Connection con = db.getConnection();
+//        System.out.println(db.leseAlleWerte(con));
+//        ArrayList <fivezeroone> res =  db.leseAlleWerte(con);
+//        res.get(2);
+//        System.out.println(res.get(2).getAvg());
+        System.out.println(db.anz100Aufnahmen(con));
+//        res.toArray();
+//        fivezeroone [][] = {avg, score, doppelquote};
+//        db.leseAlleWerte(con);
+        
+        
     }
 
 

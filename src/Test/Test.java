@@ -144,6 +144,7 @@ public class Test {
 			sb.append("| Average: " + Player.threeDartAvg());
 			sb.append("| Doppelquote: " + " 0 " );
 			sb.append("\n");
+			
 		}
 		
 		return sb.toString();

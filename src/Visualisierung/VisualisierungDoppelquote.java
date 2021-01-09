@@ -1,30 +1,30 @@
 package Visualisierung;
 
+
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.Pane;
 
-
-public class Visualisierung501 extends Pane {
+public class VisualisierungDoppelquote {
 
 	public static AreaChart<Number, Number> areachart() throws Exception {
 
 		NumberAxis xAxis= new NumberAxis();
-		xAxis.setLabel("Scores der jeweiligen Spiele");
+		xAxis.setLabel("Doppelquote der jeweiligen Spiele");
 		NumberAxis yAxis= new NumberAxis();
-		yAxis.setLabel("Scores");
+		yAxis.setLabel("Prozent [%]");
 
 		AreaChart<Number, Number> areaChart = new AreaChart<Number,Number>(xAxis,yAxis);
-		areaChart.setTitle("Werte für den Score");
+		areaChart.setTitle("Werte für die Doppelquote");
 
 		XYChart.Series<Number, Number> data = new XYChart.Series<Number, Number>();
-		data.setName("Scores");
+		data.setName("Doppelquote");
 
-		vizualizingMethods.create(data, 1);
+		vizualizingMethods.create(data, 2);
 		areaChart.setCreateSymbols(false);
 		areaChart.getData().add(data);
 		return areaChart;
 	} 
+
 
 }
