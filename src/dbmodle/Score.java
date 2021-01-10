@@ -7,6 +7,7 @@ public class Score {
 	double s = Test.getSum();
 
 	public Score(double s) {
+		super();
 		this.s = s;
 	}
 
