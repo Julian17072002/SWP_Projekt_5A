@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 public class DBManager {
@@ -30,15 +31,16 @@ public class DBManager {
 		return null;
 	}
 
-	public void speichereNeuenEintrag(Connection con, Score s, average a, Doppelquote d) throws SQLException {
-		String sql = "insert into fivezeroone (score, avg, doppelquote) values (?,?,?)";
+	public void speichereNeuenEintrag(Connection con, dt t, Score s, average a, Doppelquote d) throws SQLException {
+		String sql = "insert into fivezeroone (dt, score, avg, doppelquote) values (?,?,?,?)";
 		PreparedStatement stm = null;
-
+		
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setDouble(1, s.getS());
-			stm.setDouble(2, a.getA());
-			stm.setDouble(3, d.getD());
+			stm.setString(1, t.getDate());
+			stm.setDouble(2, s.getS());
+			stm.setDouble(3, a.getA());
+			stm.setDouble(4, d.getD());
 			stm.executeUpdate();
 		} finally {
 			if (stm != null) {
@@ -52,7 +54,7 @@ public class DBManager {
 		ResultSet rs = null;
 		ArrayList<fivezeroone> result = new ArrayList<fivezeroone>();
 		try {
-			String sql = "select * from fivezeroone";
+			String sql = "select score, avg, doppelquote from fivezeroone";
 			stm = con.prepareStatement(sql);
 			rs = stm.executeQuery();
 			while (rs.next()) {

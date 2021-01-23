@@ -43,8 +43,8 @@ public class AnzahlAusgeben extends Application {
 		root.getChildren().add(new Label("Durchschnittliche Doppelquote: "+ dd));
 		
 		root.getChildren().add(new Label(""));
-		root.getChildren().add(new Label("Bestes Spiel: "+ bestGame));
-		root.getChildren().add(new Label("Schlechtestes Spiel: "+ worstGame));
+		root.getChildren().add(new Label("Bestes Spiel: "+ bestGame+" Avg."));
+		root.getChildren().add(new Label("Schlechtestes Spiel: "+ worstGame+" Avg."));
  
  
         Scene scene = new Scene(root, 320, 300);

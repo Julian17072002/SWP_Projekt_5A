@@ -9,11 +9,14 @@ import SpielModi.Game;
 import SpielModi.Player;
 import SpielModi.Result;
 import java.sql.Connection;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import dbmodle.DBManager;
 import dbmodle.Doppelquote;
 import dbmodle.Score;
 import dbmodle.average;
+import dbmodle.dt;
 import SpielModi.PlayerCounter;
 
 public class Test {
@@ -22,6 +25,7 @@ public class Test {
 	private Scanner sc;
 	private static double sum;
 	private static double quote;
+	
 	
 	public Test(Game game) {
 		super();
@@ -84,11 +88,13 @@ public class Test {
 						DBManager db = new DBManager();
 						Connection con = DBManager.getConnection();
 						System.out.println("connect");
+						Date date = new Date(System.currentTimeMillis());
+						dt t = new dt(date);
 						Score s = new Score(sum);
 						average a = new average(Player.threeDartAvg());
 						Doppelquote d = new Doppelquote(quote1);
 						
-						db.speichereNeuenEintrag(con, s, a, d);
+						db.speichereNeuenEintrag(con, t, s, a, d);
 						
 						System.out.println("Game shot and the Leg");
 						System.out.println();
@@ -108,13 +114,16 @@ public class Test {
 			
 			DBManager db = new DBManager();
 			Connection con = DBManager.getConnection();
-			System.out.println("connect");
+			
+			Date date = new Date(System.currentTimeMillis());
+			
+			dt t = new dt(date);
 			Score s = new Score(sum);
 			average a = new average(Player.threeDartAvg());
 			Doppelquote d = new Doppelquote(0.0);
 			
-			db.speichereNeuenEintrag(con, s, a, d);
-			
+			db.speichereNeuenEintrag(con, t, s, a, d);
+			System.out.println("connect");
 			System.out.println();
 			
 			game.nextPlayer();
@@ -163,6 +172,7 @@ public class Test {
 		return quote;
 	}
 	
+
 //	public static void main(String[] args) {
 //
 //	}
