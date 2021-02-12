@@ -19,7 +19,7 @@ public class DBManager {
 			String driver = "com.mysql.cj.jdbc.Driver";
 			String url = "jdbc:mysql://localhost:3306/dartdb?serverTimezone=UTC&useSSL=false";
 			String username = "root";
-			String password = "";
+			String password = "#1606188941Js";
 			Class.forName(driver);
 
 			Connection con = DriverManager.getConnection(url, username, password);

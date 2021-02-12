@@ -30,8 +30,8 @@ public class AnzahlAusgeben extends Application {
         double avgavg = DBManager.gesamtAvg(con);
         double dd = DBManager.doppelDurchschnitt(con);
         
-        int bestGame = DBManager.bestesSpiel(con);
-        int worstGame = DBManager.schlechtestesSpiel(con);
+        float bestGame = DBManager.bestesSpiel(con);
+        float worstGame = DBManager.schlechtestesSpiel(con);
         
 		root.getChildren().add(new Label("100 + Aufnahmen: "+ anz100Aufnahmen));
 		root.getChildren().add(new Label("140 + Aufnahmen: "+ anz140Aufnahmen));
