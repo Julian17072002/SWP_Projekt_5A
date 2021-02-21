@@ -27,7 +27,7 @@ public class Daten_auslesen {
 
 //    private static String dbTable = "fivezeroone";
     private static String user = "root";
-    private static String pass = "#1606188941Js";
+    private static String pass = "";
    
 
     public static void DatenAuslesen() {
