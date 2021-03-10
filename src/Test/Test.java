@@ -142,20 +142,55 @@ public class Test {
 		System.out.println();
 	}
 	
+//	private String generateScoreboard(PlayerCounter score) {
+//		StringBuilder sb = new StringBuilder("Round: "+((score.getPlayerCounter() / score.getPlayers().length + 1) + "\n"));
+//				
+//		for (Player p : score.getPlayers()) {
+//			sb.append(p.getName() + ": ");
+//			sb.append(p.getCurrentPoints() + " points");
+//			sb.append("| " + p.getNumberOfDarts() + " thrown Darts");
+//			sb.append("| Legs Won" + p.getLegsWon());
+//			sb.append("| Average: " + Player.threeDartAvg());
+//			sb.append("| Doppelquote: " + " 0 " );
+//			sb.append("\n");
+//			
+//		}
+//		
+//		return sb.toString();
+//	}
+	
 	private String generateScoreboard(PlayerCounter score) {
-		StringBuilder sb = new StringBuilder("Round: "+((score.getPlayerCounter() / score.getPlayers().length + 1) + "\n"));
-				
+		
+		StringBuilder sb = new StringBuilder(" " + "----------" + "\n");
+		sb.append(String.format("| Round %-2d | \n", 
+				(score.getPlayerCounter() / score.getPlayers().length + 1)));
+		
+		
+		int longest = 6;
 		for (Player p : score.getPlayers()) {
-			sb.append(p.getName() + ": ");
-			sb.append(p.getCurrentPoints() + " points");
-			sb.append("| " + p.getNumberOfDarts() + " thrown Darts");
-			sb.append("| Legs Won" + p.getLegsWon());
-			sb.append("| Average: " + Player.threeDartAvg());
-			sb.append("| Doppelquote: " + " 0 " );
-			sb.append("\n");
-			
+			longest = Math.max(longest, p.getName().length());
 		}
 		
+//		String str = "-";
+//		String separation = " " + "" + "\n";
+//		System.out.printf(separation, null);
+//		sb.append(separation);
+		sb.append(String.format("| Player%" + (Math.max(longest - 5, 1)) + "s| Score | Darts | Legs | 3 D.Avg. |\n", ""));
+		
+//		sb.append(separation);
+		
+
+		for (Player p : score.getPlayers()) {
+			sb.append(String.format("| %" + longest + "s ", p.getName()));
+			sb.append(String.format("| %5d ", p.getCurrentPoints()));
+			sb.append(String.format("| %5d ", p.getNumberOfDarts()));
+			sb.append(String.format("| %4d ", p.getLegsWon()));
+			sb.append(String.format("| %8.2f |", Player.threeDartAvg()));
+			sb.append("\n");
+		}
+//		sb.append(separation);
+		
+
 		return sb.toString();
 	}
 	
