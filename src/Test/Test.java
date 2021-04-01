@@ -9,8 +9,9 @@ import SpielModi.Game;
 import SpielModi.Player;
 import SpielModi.Result;
 import java.sql.Connection;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+
+import java.sql.Timestamp;
+
 
 import dbmodle.DBManager;
 import dbmodle.Doppelquote;
@@ -74,6 +75,7 @@ public class Test {
 						sum += calcRes.getScore();
 						System.out.println("\t -> "+ calcRes.getRemaining());
 		
+				
 					
 						
 					if (calcRes.getRemaining() == 0) {
@@ -88,7 +90,7 @@ public class Test {
 						DBManager db = new DBManager();
 						Connection con = DBManager.getConnection();
 						System.out.println("connect");
-						Date date = new Date(System.currentTimeMillis());
+						Timestamp date = new Timestamp(System.currentTimeMillis());
 						dt t = new dt(date);
 						Score s = new Score(sum);
 						average a = new average(Player.threeDartAvg());
@@ -115,7 +117,7 @@ public class Test {
 			DBManager db = new DBManager();
 			Connection con = DBManager.getConnection();
 			
-			Date date = new Date(System.currentTimeMillis());
+			Timestamp date = new Timestamp(System.currentTimeMillis());
 			
 			dt t = new dt(date);
 			Score s = new Score(sum);
@@ -189,9 +191,15 @@ public class Test {
 			sb.append("\n");
 		}
 //		sb.append(separation);
-		
+
 
 		return sb.toString();
+		
+		
+	}
+	
+	public static void checkout() {
+
 	}
 	
 	public boolean playAgain(boolean isWon) {

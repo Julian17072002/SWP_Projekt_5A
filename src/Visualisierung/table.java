@@ -32,9 +32,9 @@ public class Table extends Application {
     	ArrayList<average> a = db.leseAvg(con);
     	
         TableView<String> tView = new TableView<String>();
-        
-        TableColumn<String, String> score = new TableColumn<String, String>("Score");
-        TableColumn<String, String> average = new TableColumn<String, String>("Average");
+
+        TableColumn<String, String> score = new TableColumn<String, String>("All Scores");
+//        TableColumn<String, String> average = new TableColumn<String, String>("Average");
         
         
 
@@ -46,22 +46,22 @@ public class Table extends Application {
                     }
                 });
         
-        average.setCellValueFactory(
-                new Callback<CellDataFeatures<String, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(
-                            CellDataFeatures<String, String> p) {
-                        return new SimpleStringProperty(p.getValue());
-                    }
-                });
+//        average.setCellValueFactory(
+//                new Callback<CellDataFeatures<String, String>, ObservableValue<String>>() {
+//                    public ObservableValue<String> call(
+//                            CellDataFeatures<String, String> p) {
+//                        return new SimpleStringProperty(p.getValue());
+//                    }
+//                });
 
 
        
         
-        tView.getColumns().addAll(score, average);
+        tView.getColumns().addAll(score);
         tView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
 
-        tView.setItems(createList1(a));
+        tView.setItems(createList1(s));
         
         Scene scene = new Scene(tView, 250, 300);
 //        primaryStage.setScene(scene);
@@ -70,8 +70,8 @@ public class Table extends Application {
     }
 
 
-	 private static ObservableList<String> createList1(ArrayList<average> a) {
-		 return FXCollections.observableArrayList(AvgToString(a));
+	 private static ObservableList<String> createList1(ArrayList<Score> s) {
+		 return FXCollections.observableArrayList(ScoreToString(s));
 	 }
 
 	 
