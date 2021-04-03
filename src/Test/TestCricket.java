@@ -10,6 +10,7 @@ public class TestCricket {
 
 	private CricketGame game;
 	private Scanner sc;
+	Player p = new Player(null, 0, 0, 0, 0, 0, 0, 0);
 
 	public TestCricket(CricketGame game) {
 		super();
@@ -27,7 +28,7 @@ public class TestCricket {
 			for (int i = 1; i <= 3; i++) {
 				System.out.println(i + " > ");
 
-				String input = sc.nextLine().toLowerCase().trim();
+				String input = sc.nextLine();
 
 				if (input.equals("exit"))
 					break loop;
@@ -37,9 +38,7 @@ public class TestCricket {
 					i--;
 					continue;
 				}
-				
-						
-				
+
 				try {
 
 					int score = BoardCricket.input(input);
@@ -49,97 +48,106 @@ public class TestCricket {
 						i--;
 						continue;
 					}
-					
-					if (score == 59 || score == 58 || score == 56 || score == 55 || score == 53 || score == 52 || score == 49 || score == 47 || score == 46 || score == 44 || score == 43 || score == 41 || score == 37 || score == 35 || score == 31 || score == 29 || score == 23) {
+
+					if (score == 59 || score == 58 || score == 56 || score == 55 || score == 53 || score == 52
+							|| score == 49 || score == 47 || score == 46 || score == 44 || score == 43 || score == 41
+							|| score == 37 || score == 35 || score == 31 || score == 29 || score == 23) {
 						System.out.println("Impossible score");
 						i--;
 						continue;
 					}
-					
+
 					if (score == 20) {
-						game.addTwForCurrentPlayer(1);
+						game.addTwForCurrentPlayer(score);
 					}
 					if (score == 19) {
-						game.addNiForCurrentPlayer(1);
+						game.addNiForCurrentPlayer(score);
 					}
 					if (score == 18) {
-						game.addEIForCurrentPlayer(1);
+						game.addEIForCurrentPlayer(score);
 					}
 					if (score == 17) {
-						game.addSeForCurrentPlayer(1);
+						game.addSeForCurrentPlayer(score);
 					}
 					if (score == 16) {
-						game.addSiForCurrentPlayer(1);
+						game.addSiForCurrentPlayer(score);
 					}
 					if (score == 15) {
-						game.addFiForCurrentPlayer(1);
+						game.addFiForCurrentPlayer(score);
 					}
 
 					if (score == 40) {
-						game.addTw2ForCurrentPlayer(2);
+						game.addTw2ForCurrentPlayer(score);
 					}
 					if (score == 38) {
-						game.addNi2ForCurrentPlayer(2);
+						game.addNi2ForCurrentPlayer(score);
 					}
 					if (score == 36) {
-						game.addEI2ForCurrentPlayer(2);
+						game.addEI2ForCurrentPlayer(score);
 					}
 					if (score == 34) {
-						game.addSe2ForCurrentPlayer(2);
+						game.addSe2ForCurrentPlayer(score);
 					}
 					if (score == 32) {
-						game.addSi2ForCurrentPlayer(2);
+						game.addSi2ForCurrentPlayer(score);
 					}
 					if (score == 30) {
-						game.addFi2ForCurrentPlayer(2);
+						game.addFi2ForCurrentPlayer(score);
 					}
 
 					if (score == 60) {
-						game.addTw3ForCurrentPlayer(3);
+						game.addTw3ForCurrentPlayer(score);
 					}
 					if (score == 57) {
-						game.addNi3ForCurrentPlayer(3);
+						game.addNi3ForCurrentPlayer(score);
 					}
 					if (score == 54) {
-						game.addEi3ForCurrentPlayer(3);
+						game.addEi3ForCurrentPlayer(score);
 					}
 					if (score == 51) {
-						game.addSe3ForCurrentPlayer(3);
+						game.addSe3ForCurrentPlayer(score);
 					}
 					if (score == 48) {
-						game.addSi3ForCurrentPlayer(3);
+						game.addSi3ForCurrentPlayer(score);
 					}
 					if (score == 45) {
-						game.addFi3ForCurrentPlayer(3);
+						game.addFi3ForCurrentPlayer(score);
 					}
 
 					if (score == 25) {
-						game.addBlForCurrentPlayer(1);
+						game.addBlForCurrentPlayer(score);
 					}
 					if (score == 50) {
-						game.addBeForCurrentPlayer(1);
+						game.addBeForCurrentPlayer(score);
 					}
 
-					if (Player.numberOfTw == 3 && Player.numberOfNi == 3 && Player.numberOfEi == 3
-							&& Player.numberOfSe == 3 && Player.numberOfSi == 3 && Player.numberOfFi == 3
-							&& Player.numberOfBl == 3) {
-						System.out.println("Player wins!");
-						break loop;
-					}
 				} catch (Exception e) {
 					System.out.println("Sytax Error");
 					i--;
 					continue;
 				}
+
 			}
 
+			System.out.println();
 			game.nextPlayer();
+
 		} while (true);
 
 		sc.close();
 		System.out.println("Goodbye");
 	}
 
+	public void Win() {
+		if (p.getTw() == 3 && p.getNi() == 3 && p.getEi() == 3
+				&& p.getSe() == 3 && p.getSi() == 3 && p.getFi() == 3
+				&& p.getBl() == 3) {
+
+			System.out.println("Player wins!");
+			
+		}
+	}
+	
 	private void printHelp() {
 		System.out.println();
 		System.out.println("Enter the score you hit per Dart");

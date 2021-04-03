@@ -3,13 +3,13 @@ package Cricket;
 public class Player {
 	private final String NAME;
 
-	public static int numberOfTw;
-	public static int numberOfNi;
-	public static int numberOfEi;
-	public static int numberOfSe;
-	public static int numberOfSi;
-	public static int numberOfFi;
-	public static int numberOfBl;
+	public int numberOfTw;
+	public int numberOfNi;
+	public int numberOfEi;
+	public int numberOfSe;
+	public int numberOfSi;
+	public int numberOfFi;
+	public int numberOfBl;
 
 	public Player(String name, int tw, int ni, int ei, int se, int si, int fi, int bl) {
 		NAME = name;
@@ -28,39 +28,39 @@ public class Player {
 		return NAME;
 	}
 
-	public Object getTw() {
+	public int getTw() {
 		// TODO Auto-generated method stub
 		return numberOfTw;
 	}
 
-	public Object getNi() {
+	public int getNi() {
 		// TODO Auto-generated method stub
 		return numberOfNi;
 	}
 
-	public Object getEi() {
+	public int getEi() {
 		// TODO Auto-generated method stub
 		return numberOfEi;
 	}
 
-	public Object getSe() {
+	public int getSe() {
 		// TODO Auto-generated method stub
 		return numberOfSe;
 	}
 
-	public Object getSi() {
+	public int getSi() {
 		// TODO Auto-generated method stub
 		return numberOfSi;
 	}
 
-	public Object getFi() {
+	public int getFi() {
 		// TODO Auto-generated method stub
 		return numberOfFi;
 	}
 
-	public Object getBl() {
-		// TODO Auto-generated method stub
+	public int getBl() {
 		return numberOfBl;
+	
 	}
 
 	public int addTw(int tw) {
@@ -126,5 +126,16 @@ public class Player {
 		}
 		return numberOfBl;
 	}
+
+//	public boolean winner(int numberOfTw, int numberOfNi,int numberOfEi,int numberOfSe,int numberOfSi,int numberOfFi, int numberOfBl) {
+//		if (numberOfTw == 3 && numberOfNi == 3 && numberOfEi == 3
+//				&& numberOfSe == 3 && numberOfSi == 3 && numberOfFi == 3
+//				&& numberOfBl == 3) {
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+//	}
 
 }

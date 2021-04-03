@@ -4,17 +4,19 @@ public class CricketGame {
 	private Player[] players;
 	private int counter;
 
+
 	public CricketGame(int numberOfPlayers, int tw, int ni, int ei, int se, int si, int fi, int bl) {
 		counter = 0;
 		players = new Player[numberOfPlayers];
 
+		
 		for (int p = 0; p < numberOfPlayers; p++) {
 			players[p] = new Player("Player " + (p + 1), tw, ni, ei, se, si, fi, bl);
 		}
 	}
 
 	public String generateScoreboard() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("Round: " + (counter / 2 + 1) + "\n");
 
 		for (Player p : players) {
 			sb.append(p.getName() + ": ");
@@ -30,6 +32,7 @@ public class CricketGame {
 
 		return sb.toString();
 	}
+	
 
 	public int addTwForCurrentPlayer(int tw) {
 		return players[counter % players.length].addTw(1);
@@ -38,7 +41,7 @@ public class CricketGame {
 
 	public int addNiForCurrentPlayer(int ni) {
 		return players[counter % players.length].addNi(1);
-
+	 
 	}
 
 	public int addEIForCurrentPlayer(int ei) {
@@ -133,6 +136,7 @@ public class CricketGame {
 
 	public void nextPlayer() {
 		counter++;
+
 	}
 
 	public String getCurrentPlayerName() {
